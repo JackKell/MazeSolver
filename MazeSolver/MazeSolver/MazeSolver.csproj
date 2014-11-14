@@ -72,9 +72,12 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Maze.cs" />
+    <Compile Include="Point.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Game\Program.cs" />
     <Compile Include="Game\MazeSolverGame.cs" />
+    <Compile Include="Vertex.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game\Game.ico" />
