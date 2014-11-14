@@ -9,23 +9,17 @@ namespace MazeSolver
     {
         private int x;
         private int y;
+        private int z;
 
-        public int X
-        {
-            get;
-            set;
-        }
+        public int X { get; set; }
+        public int Y { get; set; }
+        public int Z { get; set; }
 
-        public int Y
-        {
-            get;
-            set;
-        }
-
-        public Point(int x, int y)
+        public Point(int x, int y, int z = 0)
         {
             this.x = x;
             this.y = y;
+            this.z = z;
         }
     }
 }
