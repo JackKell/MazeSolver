@@ -1,3 +1,12 @@
+#region File Info
+/*
+ * Authors: Kyle Hunstman & Brandon Olson
+ * File Name: MazeSolverGame.cs
+ * File Discription: It holds the information for the solving maze game.
+ */
+#endregion
+
+#region Using Statements
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +17,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+#endregion
 
 namespace MazeSolver
 {
