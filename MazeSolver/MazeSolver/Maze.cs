@@ -30,6 +30,7 @@ namespace MazeSolver
         public Point Start { get; set; }
         public Point End { get; set; }
         public Point Dimensions { get; set; }
+        public List<List<List<Vertex>>> Map { get; }
         #endregion
 
         #region Contructor(s)
