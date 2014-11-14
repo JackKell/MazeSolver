@@ -84,6 +84,13 @@
     <Content Include="Game\GameThumbnail.png">
       <XnaPlatformSpecific>true</XnaPlatformSpecific>
     </Content>
+    <Content Include="Mazes\maze_10.txt" />
+    <Content Include="Mazes\maze_100.txt" />
+    <Content Include="Mazes\maze_1000.txt" />
+    <Content Include="Mazes\maze_20.txt" />
+    <Content Include="Mazes\maze_200.txt" />
+    <Content Include="Mazes\maze_50.txt" />
+    <Content Include="Mazes\maze_500.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MazeSolverContent\MazeSolverContent.contentproj">
@@ -112,6 +119,9 @@
       <ProductName>Windows Installer 4.5</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Screens\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />

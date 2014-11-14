@@ -24,5 +24,14 @@ namespace MazeSolver
             this.position = position;
             this.isWall = isWall;
         }
+
+        public Vertex(Point position, int isWall)
+        {
+            this.position = position;
+            if (isWall == 0)
+                this.isWall = false;
+            else
+                this.isWall = true;
+        }
     }
 }
