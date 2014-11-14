@@ -92,5 +92,11 @@ namespace MazeSolver
             }
         }
         #endregion
+
+        #region Public Method(s)
+        //Draw itself
+        //Update maybe
+        //I don't know
+        #endregion
     }
 }
