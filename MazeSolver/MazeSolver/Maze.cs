@@ -95,12 +95,23 @@ namespace MazeSolver
                         {
                             Point point = new Point(xIndex, yIndex, zIndex);
                             Vertex vertex = new Vertex(point, int.Parse(values[xIndex]));
+                            vertex.GoalDistance = GetDistance(point, end);
                             map[xIndex][yIndex][zIndex] = vertex;
                         }
                         break;
                 }
                 currentLineNum++;
             }
+        }
+        #endregion
+
+        #region Private Method(s)
+        private double GetDistance(Point p1, Point p2)
+        {
+            return Math.Sqrt(
+                ((p2.X - p1.X) * (p2.X - p1.X)) + 
+                ((p2.Y - p1.Y) * (p2.Y - p1.Y)) + 
+                ((p2.Z - p1.Z) * (p2.Z - p1.Z)));
         }
         #endregion
 
