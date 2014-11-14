@@ -62,10 +62,7 @@ namespace MazeSolver
                         // Reads the dimensions of the maze on line 1
                         dimensions.X = int.Parse(values[0]);
                         dimensions.Y = int.Parse(values[1]);
-                        if (values.Count > 2)
-                            dimensions.Z = int.Parse(values[2]);
-                        else
-                            dimensions.Z = 1;
+                        dimensions.Z = values.Count > 2 ? int.Parse(values[2]) : 1;
                         break;
                     case 2:
                         /* The start point given in the maze file is
@@ -74,8 +71,7 @@ namespace MazeSolver
                         // Reads the start point of the maze on line 2
                         start.X = int.Parse(values[0]);
                         start.Y = dimensions.Y - int.Parse(values[1]); // Reverses the y-axis
-                        if (values.Count > 2)
-                            start.Z = int.Parse(values[2]);
+                        start.Z = values.Count > 2 ? int.Parse(values[2]) : 0;
                         break;
                     case 3:
                         /* The end point given in the maze file is
@@ -84,8 +80,7 @@ namespace MazeSolver
                         // Reads the end point of the maze on line 3
                         end.X = int.Parse(values[0]);
                         end.Y = dimensions.Y - int.Parse(values[1]); // Reverses the y-axis
-                        if (values.Count > 2)
-                            end.Z = int.Parse(values[2]);
+                        end.Z = values.Count > 2 ? int.Parse(values[2]) : 0;
                         break;
                     default:
                         // The maze definition starts on line 4
