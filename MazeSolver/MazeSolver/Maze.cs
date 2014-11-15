@@ -36,12 +36,6 @@ namespace MazeSolver
         #region Contructor(s)
         public Maze(String fileName)
         {
-            /* NOTE: Sorry Kyle the top left of the maze needs to be (0,0) 
-             * much much much easier. I will just change the point values
-             * so that they point to the correct locations.
-             */
-
-            //Also Note: This code will need alot of cleanning up after this.
             start = new Point();
             end = new Point();
             dimensions = new Point();
