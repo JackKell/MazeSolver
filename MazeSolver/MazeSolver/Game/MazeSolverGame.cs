@@ -17,6 +17,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using MazeSolver.Screens;
 #endregion
 
 namespace MazeSolver
@@ -25,16 +26,22 @@ namespace MazeSolver
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        GameScreen currentScreen;
+        MazeScreen mazeScreen;
+        Maze maze;
 
         public MazeSolverGame()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            maze = new Maze(@"Mazes/maze_10.txt");
+            mazeScreen = new MazeScreen(this, spriteBatch, maze);
         }
 
         protected override void Initialize()
         {
+
             base.Initialize();
         }
 

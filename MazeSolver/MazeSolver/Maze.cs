@@ -100,6 +100,7 @@ namespace MazeSolver
                             Point point = new Point(xIndex, yIndex, zIndex);
                             Vertex vertex = new Vertex(point, int.Parse(values[xIndex]));
                             vertex.GoalDistance = GetDistance(point, end);
+                            vertex.MovementCost = Double.PositiveInfinity;
                             map[xIndex][yIndex][zIndex] = vertex;
                         }
                         break;

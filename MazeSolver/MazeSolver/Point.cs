@@ -41,5 +41,10 @@ namespace MazeSolver
             this.z = z;
         }
         #endregion
+
+        public override string ToString()
+        {
+            return "(" + x + ", " + y + ", " + z + ")";
+        }
     }
 }

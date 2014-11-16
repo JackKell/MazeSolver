@@ -11,6 +11,8 @@ namespace MazeSolver
         private List<Vertex> openVerticies;
         private List<Vertex> closedVerticies;
 
+        //public Maze Maze { get { return maze; } }
+
         public Mouse(Maze maze)
         {
             this.maze = maze;
@@ -18,6 +20,7 @@ namespace MazeSolver
             closedVerticies = new List<Vertex>();
         }
 
+        #region Your A Lot of Gets
         private Vertex GetWestVertex(Vertex root)
         {
             Vertex vertex;
@@ -82,6 +85,8 @@ namespace MazeSolver
             return GetSouthVertex(GetWestVertex(root));
         }
 
+        #endregion
+
         private List<Vertex> GetSurroundingVerticies(Vertex root)
         {
             Vertex vWest, vNorthWest, vNorth, vNorthEast, vEast,
@@ -126,10 +131,45 @@ namespace MazeSolver
 
         public String FindShortestPath()
         {
-            Vertex currVertex = maze.StartVertex;
-            UpdateVerticies(currVertex);
+            Vertex currentVertex = maze.StartVertex;
+            String path = "There is no possible path to the target. :-(";
+            bool pathNotFound = true;
+            List<Vertex> surroundingVertexs = new List<Vertex>();
 
-            return "";
+            while (pathNotFound)
+            {
+                closedVerticies.Add(currentVertex);
+                surroundingVertexs = GetSurroundingVerticies(currentVertex);
+                foreach (Vertex adjacancentVertex in surroundingVertexs)
+                {
+                    double possibleFCost = currentVertex.MovementCost + 1 + adjacancentVertex.GoalDistance;
+                    if (possibleFCost < adjacancentVertex.MovementCost)
+                    {
+                        adjacancentVertex.MovementCost = possibleFCost;
+                        adjacancentVertex.Parent = currentVertex;
+                        if (adjacancentVertex.Parent == maze.EndVertex)
+                        {
+                            path = adjacancentVertex.GetPath();
+                            pathNotFound = false;
+                        }
+                    }
+                }
+                currentVertex = GetNodeInOpenListWithTheSmallestCost();
+            }
+            return path;
+        }
+
+        private Vertex GetNodeInOpenListWithTheSmallestCost()
+        {
+            Vertex smallestVertex = openVerticies[0];
+            foreach (Vertex vertex in openVerticies)
+            {
+                if (vertex.FCost < smallestVertex.FCost)
+                {
+                    smallestVertex = vertex;
+                }
+            }
+            return smallestVertex;
         }
     }
 }

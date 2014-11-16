@@ -1,26 +1,27 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-
 
 namespace MazeSolver.Screens
 {
-    public class Screen : Microsoft.Xna.Framework.DrawableGameComponent
+    class MazeScreen : GameScreen
     {
-        public Screen(Game game)
-            : base(game)
+        private Maze maze;
+        private Mouse mouse;
+
+        public MazeScreen(MazeSolverGame game, SpriteBatch spriteBatch, Maze maze)
+            : base(game, spriteBatch)
         {
+            this.maze = maze;
+            this.mouse = new Mouse(maze);
         }
 
         public override void Initialize()
         {
+            Console.WriteLine(mouse.FindShortestPath());
             base.Initialize();
         }
 

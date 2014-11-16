@@ -29,7 +29,29 @@
     <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.AudioImporters, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.VideoImporters, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Compile Include="Mazes\maze_10.txt">
+      <Name>maze_10</Name>
+    </Compile>
+    <Compile Include="Mazes\maze_100.txt">
+      <Name>maze_100</Name>
+    </Compile>
+    <Compile Include="Mazes\maze_1000.txt">
+      <Name>maze_1000</Name>
+    </Compile>
+    <Compile Include="Mazes\maze_20.txt">
+      <Name>maze_20</Name>
+    </Compile>
+    <Compile Include="Mazes\maze_200.txt">
+      <Name>maze_200</Name>
+    </Compile>
+    <Compile Include="Mazes\maze_50.txt">
+      <Name>maze_50</Name>
+    </Compile>
+    <Compile Include="Mazes\maze_500.txt">
+      <Name>maze_500</Name>
+    </Compile>
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="Images\gridBox.png">
       <Name>gridBox</Name>
