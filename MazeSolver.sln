@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MazeSolver", "MazeSolver\MazeSolver\MazeSolver.csproj", "{67302A16-E51A-4C9D-8FED-8ED7AE3A7B67}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "MazeSolverContent", "MazeSolver\MazeSolverContent\MazeSolverContent.contentproj", "{0D99ACF0-2E32-4F21-9F1E-E7B6142BA616}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MazeSolverContent", "MazeSolver\MazeSolverContent\MazeSolverContent.contentproj", "{0D99ACF0-2E32-4F21-9F1E-E7B6142BA616}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
