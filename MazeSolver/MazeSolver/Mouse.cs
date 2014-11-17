@@ -181,7 +181,7 @@ namespace MazeSolver
                     if (adjacancentVertex == null || adjacancentVertex.IsWall || closedVerticies.Contains(adjacancentVertex))
                         continue;
 
-                    double possibleFCost = currentVertex.MovementCost + 1 + adjacancentVertex.GoalDistance;
+                    double possibleFCost = currentVertex.MovementCost + GetDistance(currentVertex, adjacancentVertex) + adjacancentVertex.GoalDistance;
                     if (possibleFCost < adjacancentVertex.MovementCost)
                     {
                         adjacancentVertex.MovementCost = possibleFCost;
@@ -191,7 +191,7 @@ namespace MazeSolver
 
                         if (adjacancentVertex.Parent == maze.EndVertex)
                         {
-                            path = adjacancentVertex.Parent.GetPath();
+                            path = GetPath(adjacancentVertex.Parent);
                             pathNotFound = false;
                         }
                     }
@@ -216,6 +216,41 @@ namespace MazeSolver
                 }
             }
             return smallestVertex;
+        }
+
+        public string GetPath(Vertex root)
+        {
+            List<Point> path = new List<Point>();
+            string pathString = "";
+            Vertex currentVertex = root;
+
+            //Creates a list of all point from start to end
+            do
+            {
+                path.Add(currentVertex.Position);
+                currentVertex = currentVertex.Parent;
+            } while (currentVertex.Parent != null);
+            path.Add(currentVertex.Position);
+            path.Reverse();
+
+            maze.Path = path;
+
+            //Create a string format of the list with formatting
+            for (int index = 0; index < path.Count; index++)
+            {
+                pathString += path[index].ToString();
+                if (index != path.Count - 1)
+                    pathString += "->" + System.Environment.NewLine;
+            }
+
+            return pathString;
+        }
+
+        private double GetDistance(Vertex v1, Vertex v2)
+        {
+            Point p1 = v1.Position;
+            Point p2 = v2.Position;
+            return Math.Sqrt((p2.X - p1.X) * (p2.X - p1.X) + (p2.Y - p1.Y) * (p2.Y - p1.Y));
         }
     }
 }

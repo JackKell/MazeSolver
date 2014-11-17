@@ -33,32 +33,5 @@ namespace MazeSolver
             this.isWall = isWall == 1;
             this.parent = null;
         }
-
-        public string GetPath()
-        {
-            List<Point> path = new List<Point>();
-            string pathString = "";
-            Vertex currentVertex = this;
-
-            //Creates a list of all point from start to end
-            do
-            {
-                path.Add(currentVertex.Position);
-                currentVertex = currentVertex.Parent;
-            } while (currentVertex.Parent != null);
-            path.Add(currentVertex.Position);
-            path.Reverse();
-
-            //Create a string format of the list with formatting
-            for (int index = 0; index < path.Count; index++)
-            {
-                pathString += path[index].ToString();
-                if (index != path.Count - 1)
-                    pathString += "->" + System.Environment.NewLine;
-            }
-
-            return pathString;
-        }
-        
     }
 }
