@@ -44,7 +44,6 @@ namespace MazeSolver
             do
             {
                 path.Add(currentVertex.Position);
-                Console.WriteLine(currentVertex.Position.ToString());
                 currentVertex = currentVertex.Parent;
             } while (currentVertex.Parent != null);
             path.Add(currentVertex.Position);
@@ -55,7 +54,7 @@ namespace MazeSolver
             {
                 pathString += path[index].ToString();
                 if (index != path.Count - 1)
-                    pathString += "->";
+                    pathString += "->" + System.Environment.NewLine;
             }
 
             return pathString;

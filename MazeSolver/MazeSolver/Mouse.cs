@@ -176,16 +176,6 @@ namespace MazeSolver
 
                 closedVerticies.Add(currentVertex);
 
-                if (currentVertex.Position.X == 3 && currentVertex.Position.Y == 5)
-                {
-                    Console.WriteLine("Break here!");
-                }
-
-                if (currentVertex.Position.X == 4 && currentVertex.Position.Y == 4)
-                {
-                    Console.WriteLine("Break here!");
-                }
-
                 foreach (Vertex adjacancentVertex in surroundingVertexs)
                 {
                     if (adjacancentVertex == null || adjacancentVertex.IsWall || closedVerticies.Contains(adjacancentVertex))
