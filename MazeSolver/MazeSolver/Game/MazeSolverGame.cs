@@ -35,7 +35,7 @@ namespace MazeSolver
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-            maze = new Maze(@"Mazes/maze_1000.txt");
+            maze = new Maze(@"Mazes/maze_10.txt");
             mazeScreen = new MazeScreen(this, spriteBatch, maze);
         }
 

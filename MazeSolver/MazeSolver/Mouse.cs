@@ -240,8 +240,10 @@ namespace MazeSolver
             {
                 pathString += path[index].ToString();
                 if (index != path.Count - 1)
+                {
                     pathString += " " + path[index].GetDirection(path[index + 1]).ToString();
                     pathString += "->" + System.Environment.NewLine;
+                }
             }
 
             return pathString;
