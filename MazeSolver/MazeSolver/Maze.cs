@@ -24,6 +24,7 @@ namespace MazeSolver
         private Point end;
         private Point dimensions;
         private Vertex[, ,] map;
+        private List<Point> path;
         #endregion
 
         #region Getters and Setters
@@ -31,6 +32,7 @@ namespace MazeSolver
         public Point End { get; set; }
         public Point Dimensions { get; set; }
         public Vertex[,,] Map { get { return map; } }
+        public List<Point> Path { get { return path; } set { path = value; } }
 
         public Vertex StartVertex
         {
