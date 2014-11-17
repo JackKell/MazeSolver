@@ -87,13 +87,13 @@
     <Content Include="Game\GameThumbnail.png">
       <XnaPlatformSpecific>true</XnaPlatformSpecific>
     </Content>
-    <Content Include="Mazes\maze_10.txt" />
-    <Content Include="Mazes\maze_100.txt" />
-    <Content Include="Mazes\maze_1000.txt" />
-    <Content Include="Mazes\maze_20.txt" />
-    <Content Include="Mazes\maze_200.txt" />
-    <Content Include="Mazes\maze_50.txt" />
-    <Content Include="Mazes\maze_500.txt" />
+    <Content Include="Mazes2\maze_10.txt" />
+    <Content Include="Mazes2\maze_100.txt" />
+    <Content Include="Mazes2\maze_1000.txt" />
+    <Content Include="Mazes2\maze_20.txt" />
+    <Content Include="Mazes2\maze_200.txt" />
+    <Content Include="Mazes2\maze_50.txt" />
+    <Content Include="Mazes2\maze_500.txt" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">

@@ -23,27 +23,27 @@ namespace MazeSolver
         private Point start;
         private Point end;
         private Point dimensions;
-        private List<List<List<Vertex>>> map;
+        private Vertex[, ,] map;
         #endregion
 
         #region Getters and Setters
         public Point Start { get; set; }
         public Point End { get; set; }
         public Point Dimensions { get; set; }
-        public List<List<List<Vertex>>> Map { get { return map; } }
+        public Vertex[,,] Map { get { return map; } }
 
         public Vertex StartVertex
         {
             get
             {
-                return map[start.X][start.Y][start.Z];
+                return map[start.X, start.Y, start.Z];
             }
         }
         public Vertex EndVertex
         {
             get
             {
-                return map[end.X][end.Y][end.Z];
+                return map[end.X, end.Y, end.Z];
             }
         }
         #endregion
@@ -54,7 +54,6 @@ namespace MazeSolver
             start = new Point();
             end = new Point();
             dimensions = new Point();
-            map = new List<List<List<Vertex>>>();
 
             StreamReader sr = new StreamReader(fileName);
 
@@ -72,6 +71,7 @@ namespace MazeSolver
                         dimensions.X = int.Parse(values[0]);
                         dimensions.Y = int.Parse(values[1]);
                         dimensions.Z = values.Count > 2 ? int.Parse(values[2]) : 1;
+                        map = new Vertex[dimensions.X, dimensions.Y, dimensions.Z];
                         break;
                     case 2:
                         /* The start point given in the maze file is
@@ -101,7 +101,7 @@ namespace MazeSolver
                             Vertex vertex = new Vertex(point, int.Parse(values[xIndex]));
                             vertex.GoalDistance = GetDistance(point, end);
                             vertex.MovementCost = Double.PositiveInfinity;
-                            map[xIndex][yIndex][zIndex] = vertex;
+                            map[xIndex, yIndex, zIndex] = vertex;
                         }
                         break;
                 }

@@ -27,7 +27,7 @@ namespace MazeSolver
             if (root.Position.X == 0)
                 return root;
 
-            vertex = maze.Map[root.Position.X - 1][root.Position.Y][root.Position.Z];
+            vertex = maze.Map[root.Position.X - 1, root.Position.Y, root.Position.Z];
             vertex.Parent = root;
             return vertex;
         }
@@ -43,7 +43,7 @@ namespace MazeSolver
             if (root.Position.Y == 0)
                 return root;
 
-            vertex = maze.Map[root.Position.X][root.Position.Y - 1][root.Position.Z];
+            vertex = maze.Map[root.Position.X, root.Position.Y - 1, root.Position.Z];
             vertex.Parent = root;
             return vertex;
         }
@@ -59,7 +59,7 @@ namespace MazeSolver
             if (root.Position.X == maze.Dimensions.X)
                 return root;
 
-            vertex = maze.Map[root.Position.X + 1][root.Position.Y][root.Position.Z];
+            vertex = maze.Map[root.Position.X + 1, root.Position.Y, root.Position.Z];
             vertex.Parent = root;
             return vertex;
         }
@@ -75,7 +75,7 @@ namespace MazeSolver
             if (root.Position.Y == maze.Dimensions.Y)
                 return root;
 
-            vertex = maze.Map[root.Position.X][root.Position.Y + 1][root.Position.Z];
+            vertex = maze.Map[root.Position.X, root.Position.Y + 1, root.Position.Z];
             vertex.Parent = root;
             return vertex;
         }
