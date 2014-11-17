@@ -35,14 +35,15 @@ namespace MazeSolver
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-            maze = new Maze(@"Mazes/maze_10.txt");
+            maze = new Maze(@"Mazes/maze_50.txt");
             mazeScreen = new MazeScreen(this, spriteBatch, maze);
         }
 
         protected override void Initialize()
         {
-
             base.Initialize();
+            currentScreen = mazeScreen;
+            currentScreen.Initialize();
         }
 
         protected override void LoadContent()
@@ -55,6 +56,7 @@ namespace MazeSolver
         protected override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            currentScreen.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)

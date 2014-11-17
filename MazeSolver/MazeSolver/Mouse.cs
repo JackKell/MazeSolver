@@ -24,65 +24,90 @@ namespace MazeSolver
         private Vertex GetWestVertex(Vertex root)
         {
             Vertex vertex;
-            if (root.Position.X == 0)
-                return root;
-
-            vertex = maze.Map[root.Position.X - 1, root.Position.Y, root.Position.Z];
-            vertex.Parent = root;
+            try
+            {
+                vertex = maze.Map[root.Position.X - 1, root.Position.Y, root.Position.Z];
+            }
+            catch (IndexOutOfRangeException e) { return null; }
             return vertex;
         }
 
         private Vertex GetNorthWestVertex(Vertex root)
         {
-            return GetNorthVertex(GetWestVertex(root));
+            Vertex vertex;
+            try
+            {
+                vertex = maze.Map[root.Position.X - 1, root.Position.Y - 1, root.Position.Z];
+            }
+            catch (IndexOutOfRangeException e) { return null; }
+            return vertex;
         }
 
         private Vertex GetNorthVertex(Vertex root)
         {
             Vertex vertex;
-            if (root.Position.Y == 0)
-                return root;
-
-            vertex = maze.Map[root.Position.X, root.Position.Y - 1, root.Position.Z];
-            vertex.Parent = root;
+            try
+            {
+                vertex = maze.Map[root.Position.X, root.Position.Y - 1, root.Position.Z];
+            }
+            catch (IndexOutOfRangeException e) { return null; }
             return vertex;
         }
 
         private Vertex GetNorthEastVertex(Vertex root)
         {
-            return GetNorthVertex(GetEastVertex(root));
+            Vertex vertex;
+
+            try
+            {
+                vertex = maze.Map[root.Position.X + 1, root.Position.Y - 1, root.Position.Z];
+            }
+            catch (IndexOutOfRangeException e) { return null; }
+            return vertex;
         }
 
         private Vertex GetEastVertex(Vertex root)
         {
             Vertex vertex;
-            if (root.Position.X == maze.Dimensions.X)
-                return root;
-
-            vertex = maze.Map[root.Position.X + 1, root.Position.Y, root.Position.Z];
-            vertex.Parent = root;
+            try
+            {
+                vertex = maze.Map[root.Position.X + 1, root.Position.Y, root.Position.Z];
+            }
+            catch (IndexOutOfRangeException e) { return null; }
             return vertex;
         }
 
         private Vertex GetSouthEastVertex(Vertex root)
         {
-            return GetSouthVertex(GetEastVertex(root));
+            Vertex vertex;
+            try
+            {
+            vertex = maze.Map[root.Position.X + 1, root.Position.Y + 1, root.Position.Z];
+            }
+            catch (IndexOutOfRangeException e) { return null; }
+            return vertex;
         }
 
         private Vertex GetSouthVertex(Vertex root)
         {
             Vertex vertex;
-            if (root.Position.Y == maze.Dimensions.Y)
-                return root;
-
-            vertex = maze.Map[root.Position.X, root.Position.Y + 1, root.Position.Z];
-            vertex.Parent = root;
+            try
+            {
+                vertex = maze.Map[root.Position.X, root.Position.Y + 1, root.Position.Z];
+            }
+            catch (IndexOutOfRangeException e) { return null; }
             return vertex;
         }
 
         private Vertex GetSouthWestVertex(Vertex root)
         {
-            return GetSouthVertex(GetWestVertex(root));
+            Vertex vertex;
+            try
+            {
+                vertex = maze.Map[root.Position.X - 1, root.Position.Y + 1, root.Position.Z];
+            }
+            catch (IndexOutOfRangeException e) { return null; }
+            return vertex;
         }
 
         #endregion
@@ -93,13 +118,13 @@ namespace MazeSolver
                 vSouthEast, vSouth, vSouthWest;
 
             vWest = GetWestVertex(root);
-            vNorthWest = GetWestVertex(root);
-            vNorth = GetWestVertex(root);
-            vNorthEast = GetWestVertex(root);
-            vEast = GetWestVertex(root);
-            vSouthEast = GetWestVertex(root);
-            vSouth = GetWestVertex(root);
-            vSouthWest = GetWestVertex(root);
+            vNorthWest = GetNorthWestVertex(root);
+            vNorth = GetNorthVertex(root);
+            vNorthEast = GetNorthEastVertex(root);
+            vEast = GetEastVertex(root);
+            vSouthEast = GetSouthEastVertex(root);
+            vSouth = GetSouthVertex(root);
+            vSouthWest = GetSouthWestVertex(root);
 
             List<Vertex> verticies = new List<Vertex>() { vWest, vNorthWest, vNorth,
                 vNorthEast, vEast, vSouthEast, vSouth, vSouthWest };
@@ -125,35 +150,66 @@ namespace MazeSolver
 
                 openVerticies.Add(vertex);
             }
-
-
         }
 
         public String FindShortestPath()
         {
             Vertex currentVertex = maze.StartVertex;
+            currentVertex.MovementCost = 0;
+
             String path = "There is no possible path to the target. :-(";
             bool pathNotFound = true;
             List<Vertex> surroundingVertexs = new List<Vertex>();
 
             while (pathNotFound)
             {
-                closedVerticies.Add(currentVertex);
                 surroundingVertexs = GetSurroundingVerticies(currentVertex);
+
+                foreach (Vertex vertex in surroundingVertexs)
+                {
+                    if (openVerticies.Contains(vertex))
+                        openVerticies.Remove(vertex);
+                }
+
+                while(openVerticies.Contains(currentVertex))
+                    openVerticies.Remove(currentVertex);
+
+                closedVerticies.Add(currentVertex);
+
+                if (currentVertex.Position.X == 3 && currentVertex.Position.Y == 5)
+                {
+                    Console.WriteLine("Break here!");
+                }
+
+                if (currentVertex.Position.X == 4 && currentVertex.Position.Y == 4)
+                {
+                    Console.WriteLine("Break here!");
+                }
+
                 foreach (Vertex adjacancentVertex in surroundingVertexs)
                 {
+                    if (adjacancentVertex == null || adjacancentVertex.IsWall || closedVerticies.Contains(adjacancentVertex))
+                        continue;
+
                     double possibleFCost = currentVertex.MovementCost + 1 + adjacancentVertex.GoalDistance;
                     if (possibleFCost < adjacancentVertex.MovementCost)
                     {
                         adjacancentVertex.MovementCost = possibleFCost;
-                        adjacancentVertex.Parent = currentVertex;
+
+                        if(adjacancentVertex.Parent == null)
+                            adjacancentVertex.Parent = currentVertex;
+
                         if (adjacancentVertex.Parent == maze.EndVertex)
                         {
-                            path = adjacancentVertex.GetPath();
+                            path = adjacancentVertex.Parent.GetPath();
                             pathNotFound = false;
                         }
                     }
+                    openVerticies.Add(adjacancentVertex);
                 }
+
+                if (openVerticies.Count == 0)
+                    return "No Solution";
                 currentVertex = GetNodeInOpenListWithTheSmallestCost();
             }
             return path;

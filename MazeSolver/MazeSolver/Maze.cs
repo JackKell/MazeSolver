@@ -79,7 +79,7 @@ namespace MazeSolver
                          */
                         // Reads the start point of the maze on line 2
                         start.X = int.Parse(values[0]);
-                        start.Y = dimensions.Y - int.Parse(values[1]); // Reverses the y-axis
+                        start.Y = dimensions.Y - int.Parse(values[1]) - 1; // Reverses the y-axis
                         start.Z = values.Count > 2 ? int.Parse(values[2]) : 0;
                         break;
                     case 3:
@@ -88,7 +88,7 @@ namespace MazeSolver
                          */
                         // Reads the end point of the maze on line 3
                         end.X = int.Parse(values[0]);
-                        end.Y = dimensions.Y - int.Parse(values[1]); // Reverses the y-axis
+                        end.Y = dimensions.Y - int.Parse(values[1]) - 1; // Reverses the y-axis
                         end.Z = values.Count > 2 ? int.Parse(values[2]) : 0;
                         break;
                     default:

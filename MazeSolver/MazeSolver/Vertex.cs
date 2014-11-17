@@ -13,11 +13,11 @@ namespace MazeSolver
         private double movementCost;
         private bool isWall;
 
-        public Point Position { get; set; }
-        public Vertex Parent { get; set; }
-        public double GoalDistance { get; set; }
-        public double MovementCost { get; set; }
-        public bool IsWall { get; set; }
+        public Point Position { get { return position; } set { position = value; } }
+        public Vertex Parent { get { return parent; } set { parent = value; } }
+        public double GoalDistance { get { return goalDistance; } set { goalDistance = value; } }
+        public double MovementCost { get {return movementCost; } set { movementCost = value; } }
+        public bool IsWall { get { return isWall; } set { isWall = value; } }
         public double FCost { get { return goalDistance + movementCost; } }
 
         public Vertex(Point position, bool isWall)
@@ -44,15 +44,17 @@ namespace MazeSolver
             do
             {
                 path.Add(currentVertex.Position);
+                Console.WriteLine(currentVertex.Position.ToString());
                 currentVertex = currentVertex.Parent;
-            } while (currentVertex != null);
+            } while (currentVertex.Parent != null);
+            path.Add(currentVertex.Position);
             path.Reverse();
 
             //Create a string format of the list with formatting
             for (int index = 0; index < path.Count; index++)
             {
                 pathString += path[index].ToString();
-                if (index != path.Count - 2)
+                if (index != path.Count - 1)
                     pathString += "->";
             }
 
